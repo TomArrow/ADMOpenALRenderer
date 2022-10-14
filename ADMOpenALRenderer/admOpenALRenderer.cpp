@@ -65,8 +65,8 @@ int main(int argc, char* argv[]) {
     }
     {
         ALCint attrs[16] = {
-            ALC_FORMAT_CHANNELS_SOFT, ALC_STEREO_SOFT,  // ステレオ
-            ALC_FORMAT_TYPE_SOFT,     ALC_SHORT_SOFT,   // 16bit
+            ALC_FORMAT_CHANNELS_SOFT, ALC_5POINT1_SOFT,  // ステレオ
+            ALC_FORMAT_TYPE_SOFT,     ALC_FLOAT_SOFT,   // 16bit
             ALC_FREQUENCY,            44100,            // 44.1kHz
             0,                                          // end of attrs
         };
@@ -120,7 +120,7 @@ int main(int argc, char* argv[]) {
             // データを取得
             {
                 std::cout << "rendered:";
-                ALshort data[128];
+                ALfloat data[64*6];
                 ::alcRenderSamplesSOFT(device.get(), data, 64);
                 for (int i = 0; i < 64; ++i) {
                     std::cout << ' ' << data[2 * i] << ':' << data[2 * i + 1];
